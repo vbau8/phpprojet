@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Gazdă: 127.0.0.1
--- Timp de generare: iun. 21, 2021 la 02:21 PM
--- Versiune server: 10.4.19-MariaDB
--- Versiune PHP: 8.0.7
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 21 juin 2021 à 14:38
+-- Version du serveur : 10.4.19-MariaDB
+-- Version de PHP : 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Bază de date: `phpecomerce`
+-- Base de données : `phpecomerce`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `pdtnonperis`
+-- Structure de la table `pdtnonperis`
 --
 
 CREATE TABLE `pdtnonperis` (
@@ -37,7 +37,7 @@ CREATE TABLE `pdtnonperis` (
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `pdtperis`
+-- Structure de la table `pdtperis`
 --
 
 CREATE TABLE `pdtperis` (
@@ -47,6 +47,33 @@ CREATE TABLE `pdtperis` (
   `parfum` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tempConserv` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `pdtnonperis`
+--
+ALTER TABLE `pdtnonperis`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idAuteur` (`idAuteur`);
+
+--
+-- Index pour la table `pdtperis`
+--
+ALTER TABLE `pdtperis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `pdtnonperis`
+--
+ALTER TABLE `pdtnonperis`
+  ADD CONSTRAINT `pdtnonperis_ibfk_1` FOREIGN KEY (`idAuteur`) REFERENCES `auteur` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

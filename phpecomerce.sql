@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 juin 2021 à 15:10
+-- Généré le : lun. 21 juin 2021 à 16:24
 -- Version du serveur : 10.4.19-MariaDB
 -- Version de PHP : 8.0.7
 
@@ -66,9 +66,9 @@ CREATE TABLE `panier` (
 
 CREATE TABLE `pdtnonperis` (
   `id` int(11) NOT NULL,
-  `type` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `couleur` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `idAuteur` int(11) NOT NULL
+  `idAuteur` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,8 +80,8 @@ CREATE TABLE `pdtnonperis` (
 CREATE TABLE `pdtperis` (
   `id` int(11) NOT NULL,
   `dateExpir` date NOT NULL,
-  `poids` double NOT NULL,
-  `parfum` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poids` double DEFAULT NULL,
+  `parfum` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tempConserv` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -98,7 +98,7 @@ CREATE TABLE `produit` (
   `libelle` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `marque` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prixUnit` float DEFAULT NULL,
-  `qteStock` int(11) NOT NULL
+  `qteStock` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -145,12 +145,17 @@ ALTER TABLE `produit`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `pdtPeriss` (`pdtPeriss`),
   ADD UNIQUE KEY `pdtNonPeriss` (`pdtNonPeriss`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
+  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `auteur`
+--
+ALTER TABLE `auteur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `ligne`
@@ -165,6 +170,24 @@ ALTER TABLE `panier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `pdtnonperis`
+--
+ALTER TABLE `pdtnonperis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `pdtperis`
+--
+ALTER TABLE `pdtperis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -172,7 +195,13 @@ ALTER TABLE `panier`
 -- Contraintes pour la table `ligne`
 --
 ALTER TABLE `ligne`
-  ADD CONSTRAINT `ligne_ibfk_1` FOREIGN KEY (`idPanier`) REFERENCES `panier` (`id`);
+  ADD CONSTRAINT `ligne_ibfk_4` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`);
+
+--
+-- Contraintes pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`id`) REFERENCES `ligne` (`idPanier`);
 
 --
 -- Contraintes pour la table `pdtnonperis`
@@ -184,9 +213,8 @@ ALTER TABLE `pdtnonperis`
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`pdtNonPeriss`) REFERENCES `pdtnonperis` (`id`),
-  ADD CONSTRAINT `produit_ibfk_2` FOREIGN KEY (`pdtPeriss`) REFERENCES `pdtperis` (`id`),
-  ADD CONSTRAINT `produit_ibfk_3` FOREIGN KEY (`id`) REFERENCES `ligne` (`idProduit`);
+  ADD CONSTRAINT `produit_ibfk_4` FOREIGN KEY (`pdtNonPeriss`) REFERENCES `pdtnonperis` (`id`),
+  ADD CONSTRAINT `produit_ibfk_5` FOREIGN KEY (`pdtPeriss`) REFERENCES `pdtperis` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 juin 2021 à 17:01
+-- Généré le : lun. 21 juin 2021 à 17:32
 -- Version du serveur : 10.4.19-MariaDB
 -- Version de PHP : 8.0.7
 
@@ -54,7 +54,7 @@ CREATE TABLE `ligne` (
 
 CREATE TABLE `panier` (
   `id` int(11) NOT NULL,
-  `produit` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `refClient` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `montant` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

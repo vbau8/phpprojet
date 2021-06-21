@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 juin 2021 à 16:24
+-- Généré le : lun. 21 juin 2021 à 16:35
 -- Version du serveur : 10.4.19-MariaDB
 -- Version de PHP : 8.0.7
 
@@ -129,8 +129,7 @@ ALTER TABLE `panier`
 -- Index pour la table `pdtnonperis`
 --
 ALTER TABLE `pdtnonperis`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `idAuteur` (`idAuteur`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `pdtperis`

@@ -58,12 +58,7 @@ CREATE TABLE `panier` (
   `montant` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `panier`
---
 
-INSERT INTO `panier` (`id`, `refClient`, `montant`) VALUES
-(1, 'Stingaci', 200);
 
 -- --------------------------------------------------------
 

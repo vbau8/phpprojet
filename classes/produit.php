@@ -29,6 +29,10 @@
 
             }
         }
+        public function InfosProduit()
+        {
+            return $this->libelle.' '.$this->marque.' '.$this->prixUnitaire.' '.$this->qteStock;
+        }
         public function getRefProd() {
             return $this->refProd;
         }

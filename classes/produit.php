@@ -12,17 +12,17 @@
             $args = func_get_args();
             switch ($nb_args) {
                 case 4:
-                    $this->setLibelle($args[0]);
-                    $this->setMarque($args[1]);
-                    $this->setPrixUnitaire($args[2]);
-                    $this->setQteStock($args[3]);
+                    $this->setMarque($args[0]);
+                    $this->setLibelle($args[1]);
+                    $this->setQteStock($args[2]);
+                    $this->setPrixUnitaire($args[3]);
                     break;
                 case 5:
                     $this->setRefProd($args[0]);
-                    $this->setLibelle($args[1]);
-                    $this->setMarque($args[2]);
-                    $this->setPrixUnitaire($args[3]);
-                    $this->setQteStock($args[4]);
+                    $this->setMarque($args[1]);
+                    $this->setLibelle($args[2]);
+                    $this->setQteStock($args[3]);
+                    $this->setPrixUnitaire($args[4]);
                     break;
                 default:
                     break;
@@ -58,10 +58,6 @@
         }
         public function setQteStock($qteStock) {
             $this->qteStock = $qteStock;
-        }
-        public function __toString()
-        {
-            return $this->libelle.' '.$this->marque.' '.$this->prixUnitaire.' '.$this->qteStock;
         }
     }
 ?>

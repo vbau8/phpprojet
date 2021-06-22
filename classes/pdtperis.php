@@ -13,11 +13,15 @@
                     parent::__construct($args[0], $args[1], $args[2], $args[3]);
                     break;
                 case 5:
-                    parent::__construct($args[0], $args[1], $args[2], $args[3], $args[4]);
+                    if (is_numeric($args[4])) parent::__construct($args[0], $args[1], $args[2], $args[3], $args[4]);
+                    else {
+                        parent::__construct($args[0], $args[1], $args[2], $args[3]);
+                        $this->dateExpir = $args[4];
+                    }
                     break;
                 case 6:
-                    parent::__construct($args[1], $args[2], $args[3], $args[4], $args[5]);
-                    $this->setDateExpir($args[0]);
+                    parent::__construct($args[0], $args[1], $args[2], $args[3], $args[4]);
+                    $this->setDateExpir($args[5]);
                     break;
                 default:
                     break;

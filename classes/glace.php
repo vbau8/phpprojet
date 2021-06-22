@@ -11,14 +11,14 @@
             $args = func_get_args();
             switch($nb_args) {
                 case 7:
-                    parent::__construct($args[0], $args[1], $args[2], $args[5], $args[6]);
-                    $this->setTempConserv($args[3]);
-                    $this->setParfum($args[4]);
+                    parent::__construct($args[0], $args[1], $args[2], $args[3], $args[4]);
+                    $this->setParfum($args[5]);
+                    $this->setTempConserv($args[6]);
                     break;
                 case 8:
                     parent::__construct($args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
-                    $this->setTempConserv($args[7]);
                     $this->setParfum($args[6]);
+                    $this->setTempConserv($args[7]);
                     break;
             }
         }
@@ -33,6 +33,10 @@
         }
         public function setTempConserv($tempConserv) {
             $this->tempConserv = $tempConserv;
+        }
+        public function __toString()
+        {
+            return '<br/>Nom:'.$this->libelle.' gout:'.$this->parfum.' temp:'.$this->tempConserv.'°C';
         }
     }
 ?>

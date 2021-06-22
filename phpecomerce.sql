@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 juin 2021 à 17:32
+-- Généré le : mar. 22 juin 2021 à 09:26
 -- Version du serveur : 10.4.19-MariaDB
 -- Version de PHP : 8.0.7
 
@@ -57,6 +57,13 @@ CREATE TABLE `panier` (
   `refClient` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `montant` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `refClient`, `montant`) VALUES
+(1, 'Stingaci', 200);
 
 -- --------------------------------------------------------
 
@@ -163,7 +170,7 @@ ALTER TABLE `ligne`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `pdtnonperis`
@@ -191,26 +198,14 @@ ALTER TABLE `produit`
 -- Contraintes pour la table `ligne`
 --
 ALTER TABLE `ligne`
-  ADD CONSTRAINT `ligne_ibfk_4` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`);
-
---
--- Contraintes pour la table `panier`
---
-ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`id`) REFERENCES `ligne` (`idPanier`);
+  ADD CONSTRAINT `ligne_ibfk_5` FOREIGN KEY (`idPanier`) REFERENCES `panier` (`id`),
+  ADD CONSTRAINT `ligne_ibfk_6` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`);
 
 --
 -- Contraintes pour la table `pdtnonperis`
 --
 ALTER TABLE `pdtnonperis`
   ADD CONSTRAINT `pdtnonperis_ibfk_1` FOREIGN KEY (`idAuteur`) REFERENCES `auteur` (`id`);
-
---
--- Contraintes pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_4` FOREIGN KEY (`pdtNonPeriss`) REFERENCES `pdtnonperis` (`id`),
-  ADD CONSTRAINT `produit_ibfk_5` FOREIGN KEY (`pdtPeriss`) REFERENCES `pdtperis` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

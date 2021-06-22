@@ -1,4 +1,10 @@
 <?php
+	require_once('classes/pain.php');
+	require_once('classes/glace.php');
+	$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
+	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
+	echo $p->__toString();
+	echo $g->__toString();
 /*	session_start();
 	require_once("classes/produit");
 	$produit = new Produit();

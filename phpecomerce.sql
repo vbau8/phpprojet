@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 22 juin 2021 à 09:26
+-- Généré le : mar. 22 juin 2021 à 09:43
 -- Version du serveur : 10.4.19-MariaDB
 -- Version de PHP : 8.0.7
 
@@ -123,8 +123,8 @@ ALTER TABLE `auteur`
 --
 ALTER TABLE `ligne`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `idPanier` (`idPanier`),
-  ADD UNIQUE KEY `idProduit` (`idProduit`);
+  ADD KEY `idProduit` (`idProduit`) USING BTREE,
+  ADD KEY `idPanier` (`idPanier`) USING BTREE;
 
 --
 -- Index pour la table `panier`

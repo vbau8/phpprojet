@@ -22,18 +22,18 @@
 	/*require_once("classes/produit");
 	$produit = new Produit();
 	$produits = $produits->selectAll();
+	
 	require_once("classes/DTOAuteur.php");
 	$unAuteur = DTOAuteur::selectById(2);
     echo $unAuteur.'<br/>';
     $lesAuteurs = DTOAuteur::selectAll();
     foreach($lesAuteurs as $auteur) {
         echo $auteur."<br/>";
-    }*/
+    }
 	require_once("classes/DTOStylo.php");
 	$unStylo = DTOStylo::selectById(3);
     echo $unStylo.'<br/>';
     $lesStylos = DTOStylo::selectAll();
-	//var_dump($lesCartes);
     foreach($lesStylos as $stylo) {
         echo $stylo."<br/>";
     }
@@ -41,10 +41,9 @@
 	$uneCarte = DTOCartePostale::selectById(4);
     echo $uneCarte.'<br/>';
     $lesCartes = DTOCartePostale::selectAll();
-	//var_dump($lesCartes);
     foreach($lesCartes as $carte) {
         echo $carte."<br/>";
-    }
+    }*/
 	$x = 10;
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">

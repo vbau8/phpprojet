@@ -26,7 +26,7 @@ class CartePostale extends produit
  
     public function __toString()
     {
-        echo 'Infos carte postale : '.parent::InfosProduit().' type ='.$this->type;
+        return 'Infos carte postale : '.parent::InfosProduit().' type ='.$this->type;
     }
 
 # Accesseurs

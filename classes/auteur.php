@@ -12,7 +12,7 @@ class Auteur
 
     public function __toString()
     {
-        echo 'Infos auteur : '.$this->prenom.' '.$this->nom;
+        return 'Infos auteur : '.$this->prenom.' '.$this->nom;
     }
 # Accesseurs
     /**
@@ -49,6 +49,24 @@ class Auteur
             $this->nom = $nom;
 
             return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }
 ?>

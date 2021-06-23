@@ -1,14 +1,50 @@
 <?php
 	require_once('classes/pain.php');
 	require_once('classes/glace.php');
-	$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
+	require_once("classes/auteur.php");
+	require_once('classes/stylo.php');
+	require_once("classes/cartepostale.php");
+	/*$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
 	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
-	echo $p->__toString();
-	echo $g->__toString();
-/*	session_start();
-	require_once("classes/produit");
+	echo $p;
+	echo $g.'<br/>';
+	$stylo = new Stylo('libellé', 'marque', 5, 10, 'Bleu', 'Epais');
+    echo $stylo.'<br/>';
+	$stylo1 = new Stylo('STY1','libellé', 'marque1',2, 20, 'Rouge', 'Epais');
+    echo $stylo1.'<br/>';
+	$stylo3 = new Stylo('libellé2', 'marque2', 1, 7, 'Noir', 'Fin');
+    echo $stylo3.'<br/>';
+	$cartepostale1 = new CartePostale('t','carte', 'bloum','2.5', 5, 'Fête');
+    echo $cartepostale1."<br/>";
+	$auteur = new Auteur('pre','nom');
+    echo $auteur;*/
+	//session_start();
+	/*require_once("classes/produit");
 	$produit = new Produit();
-	$produits = $produits->selectAll();*/
+	$produits = $produits->selectAll();
+	require_once("classes/DTOAuteur.php");
+	$unAuteur = DTOAuteur::selectById(2);
+    echo $unAuteur.'<br/>';
+    $lesAuteurs = DTOAuteur::selectAll();
+    foreach($lesAuteurs as $auteur) {
+        echo $auteur."<br/>";
+    }*/
+	require_once("classes/DTOStylo.php");
+	$unStylo = DTOStylo::selectById(3);
+    echo $unStylo.'<br/>';
+    $lesStylos = DTOStylo::selectAll();
+	//var_dump($lesCartes);
+    foreach($lesStylos as $stylo) {
+        echo $stylo."<br/>";
+    }
+	require_once("classes/DTOCartePostale.php");
+	$uneCarte = DTOCartePostale::selectById(4);
+    echo $uneCarte.'<br/>';
+    $lesCartes = DTOCartePostale::selectAll();
+	//var_dump($lesCartes);
+    foreach($lesCartes as $carte) {
+        echo $carte."<br/>";
+    }
 	$x = 10;
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">

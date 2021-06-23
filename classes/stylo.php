@@ -30,7 +30,8 @@ class Stylo extends produit
  
     public function __toString()
     {
-        echo 'Infos stylo : '.parent::InfosProduit().' couleur '.$this->couleur.' typemine '.$this->typeMine;
+        //return 'Infos stylo : '.parent::InfosProduit().' couleur '.$this->couleur.' typemine '.$this->typeMine;
+        return $this->refProduit.' '.$this->libelle.' '.$this->marque.' '.$this->prixUnitaire.' '.$this->qteStock.' couleur '.$this->couleur.' typemine '.$this->typeMine;
     }
 
 # Accesseurs

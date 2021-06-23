@@ -31,7 +31,8 @@
         }
         public function InfosProduit()
         {
-            return $this->libelle.' '.$this->marque.' '.$this->prixUnitaire.' '.$this->qteStock;
+            $argRefProd = (empty($this->refProd)) ?  '' : $this->refProd.' ';
+            return $argRefProd.$this->libelle.' '.$this->marque.' '.$this->prixUnitaire.' '.$this->qteStock;
         }
         public function getRefProd() {
             return $this->refProd;

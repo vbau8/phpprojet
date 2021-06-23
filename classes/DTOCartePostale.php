@@ -6,7 +6,7 @@ class DTOCartePostale
 	{
 	try {
 		$maCo=self::getBdd();
-	  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is null and id=?";
+	  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is not null and p.id=?";
 		$prep=$maCo->prepare($req);
 		$prep->bindParam(1,$id,PDO::PARAM_INT); 
 		$prep->execute(); 
@@ -24,7 +24,7 @@ class DTOCartePostale
 	{
 	try {
 			$maCo=self::getBdd();
-		  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is null";
+		  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is not null";
 			$resultat = $maCo->query($req);            
 			while($mesData=$resultat->fetchObject())
 			{

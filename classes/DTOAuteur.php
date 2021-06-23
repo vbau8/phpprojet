@@ -11,7 +11,7 @@ class DTOAuteur
 		$prep->bindParam(1,$id,PDO::PARAM_INT); 
 		$prep->execute(); 
 		$mesData=$prep->fetchObject();
-		$unAuteur=new Auteur($mesData->nom,$mesData->prenom,$mesData->id);
+		$unAuteur=new Auteur($mesData->nom, $mesData->prenom);
 		} 
 	catch (PDOException $e) 
 		{
@@ -24,11 +24,11 @@ class DTOAuteur
 	{
 	try {
 			$maCo=self::getBdd();
-		  	$req="select id, nom, prenom from auteur";
+		  	$req="select nom, prenom from auteur";
 			$resultat = $maCo->query($req);
-			while($mesDataAuteur=$resultat->fetchObject())
+			while($mesData=$resultat->fetchObject())
 			{
-				$lesAuteurs[]=new Auteur($mesDataAuteur->nom,$mesDataAuteur->prenom,$mesDataAuteur->id);
+				$lesAuteurs[]=new Auteur($mesData->nom, $mesData->prenom);
 			}
 			} 
 		catch (PDOException $e) 

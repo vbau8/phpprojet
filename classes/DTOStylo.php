@@ -6,12 +6,12 @@ class DTOStylo
 	{
 	try {
 		$maCo=self::getBdd();
-	  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is not null and id=?";
+	  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is null and p.id=?";
 		$prep=$maCo->prepare($req);
 		$prep->bindParam(1,$id,PDO::PARAM_INT); 
 		$prep->execute(); 
 		$mesData=$prep->fetchObject();
-		$uneCarte=new Stylo($mesData->type, $mesData->type);
+		$uneCarte=new Stylo($mesData->couleur, $mesData->typeMine);
 		} 
 	catch (PDOException $e) 
 		{
@@ -24,11 +24,10 @@ class DTOStylo
 	{
 	try {
 			$maCo=self::getBdd();
-		  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is not null";
+		  	$req="select * from produit p inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id where idAuteur is null";
 			$resultat = $maCo->query($req);            
 			while($mesData=$resultat->fetchObject())
 			{
-
 				$lesStylo[]=new Stylo($mesData->couleur, $mesData->type);
 			}
 			} 

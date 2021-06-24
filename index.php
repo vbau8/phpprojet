@@ -19,7 +19,7 @@
 				<div class="row">
 				<?php foreach ($produits as $p) {?>
 					<div class="col-md-4">
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 18rem">
 							<div class="card-body">
 								<h5 class="card-title"><?php echo $p->marque?></h5>
 								<p class="card-text"><?php echo $p->libelle?></p>

@@ -1,5 +1,19 @@
 <?php
-	require_once('classes/DTOProduit.php');
+require_once('classes/pain.php');
+require_once('classes/glace.php');
+require_once('classes/auteur.php');
+require_once('classes/stylo.php');
+require_once('classes/cartepostale.php');
+require_once('classes/panier.php');
+require_once('classes/produit.php');
+require_once('classes/DTOProduit.php');
+$unProduit = DTOProduit::selectById(4);
+echo $unProduit->InfosProduit().'<br/>';
+$lesProduits = DTOProduit::selectAll();
+foreach($lesProduits as $produit) {
+	echo $produit->InfosProduit().'<br/>';
+}
+	/*require_once('classes/DTOProduit.php');
 	$produits = DTOProduit::selectAll();
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -33,4 +47,4 @@
 			</div>
 		</div>
 	</body>
-</html>
+</html>*/?>

@@ -59,9 +59,10 @@
         public function setQteStock($qteStock) {
             $this->qteStock = $qteStock;
         }
-        public function __toStringProd()
+        public function InfosProduit()
         {
-            return 'Nom: '.$this->libelle.'<br/>Marque: '.$this->marque.'<br/>Prix: '.$this->prixUnit.'€';
+            $argRefProd = (empty($this->refProd)) ?  '' : $this->refProd.' ';
+            return $argRefProd.$this->libelle.' '.$this->marque.' '.$this->prixUnit.' '.$this->qteStock;
         }
     }
 ?>

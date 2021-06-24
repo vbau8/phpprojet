@@ -83,10 +83,9 @@ class DTOPanier
 		}
 		return $paniers;
 	}
-	// Renvoie un objet de connexion à la BD en initialisant la connexion au besoin
+	
 	private static function getBdd()
 	{
-		// Création de la connexion
 		require("localData.php");
 		return new PDO($dns, $user, $mdp);
 	}

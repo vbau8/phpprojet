@@ -1,12 +1,12 @@
 <?php
-    class Produit {
-        public $refProd;
-        public $libelle;
-        public $marque;
-        public $prixUnit;
-        public $qteStock;
+    abstract class Produit {
+        protected $refProd;
+        protected $libelle;
+        protected $marque;
+        protected $prixUnit;
+        protected $qteStock;
 
-        function __construct()
+        public function __construct()
         {
             $nb_args = func_num_args();
             $args = func_get_args();
@@ -26,9 +26,15 @@
                     break;
                 default:
                     break;
-
             }
         }
+        public function InfosProduit()
+        {
+            $argRefProd = (empty($this->refProd)) ?  '' : $this->refProd.' ';
+            return $argRefProd.$this->libelle.' '.$this->marque.' '.$this->prixUnit.' '.$this->qteStock;
+        }
+
+    # Accesseurs
         public function getRefProd() {
             return $this->refProd;
         }

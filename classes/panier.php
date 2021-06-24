@@ -15,11 +15,12 @@ class Panier
 	public function getInfos()
 	{
 		//return "Panier <br> id : ".$this->id."<br> libelle : ".(new Produit)->getLibelle()."<br> refClient : ".$this->refClient."<br> montant : ".$this->montant." euro ";
-			return "Panier <br> id : ".$this->id."<br> libelle : ".$this->id."<br> refClient :
-			 ".$this->refClient."<br> montant : ".$this->montant." euro ";
+			return "Panier <br> id : ".$this->id."<br> libelle : ".$this->id."<br> refClient :".$this->refClient."<br> montant : ".$this->montant." euro ";
+            $produit = DTOProduit::selectById($this->id);
+        //    return $this->id."<br> libelle : ".$Produit->getLibelle()."<br> refClient :".$this->refClient."<br> montant : ".$this->montant." euro ";
 
 	}
-	public function getrefClient()
+	public function getRefClient()
 	{
 		return $this->refClient;
 	}

@@ -11,7 +11,7 @@ class DTOProduit
 			$prep->bindParam(1, $id, PDO::PARAM_INT); 
 			$prep->execute(); 
 			$mesData = $prep->fetchObject();
-			$unProduit = new Produit($mesData->id, $mesData->marque, $mesData->libelle, $mesData->prixUnit, $mesData->qteStock);
+			$unProduit = new Produit($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit);
 		} 
 		catch (PDOException $e) 
 		{
@@ -28,8 +28,9 @@ class DTOProduit
 		  	$req = "select * from produit";
 			$resultat = $maCo->query($req);            
 			while($mesData = $resultat->fetchObject()){
-				$lesProduits[] = new Produit($mesData->id, $mesData->libelle, $mesData->marque, $mesData->prixUnit, $mesData->qteStock);
+				$lesProduits[] = new Produit($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock,  $mesData->prixUnit);
                 //$lesProduits[] = new Produit()
+                //$lesProduits[] = new Produit( $mesData->libelle, $mesData->marque, $mesData->prixUnit, $mesData->qteStock);
 			}
 		} 
 		catch (PDOException $e) 

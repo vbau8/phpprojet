@@ -1,5 +1,6 @@
 <?php
-    abstract class Produit {
+    //abstract 
+    class Produit {
         public $refProd;
         public $libelle;
         public $marque;

@@ -1,5 +1,5 @@
 <?php
-require_once("panier.php");
+require_once("require.php");
 require_once("ligne.php");
 require_once("produit.php");
 class DTOPanier
@@ -24,6 +24,8 @@ class DTOPanier
 			die();
 		}
 	}
+
+	
 	public static function delete(Panier $data)
 	{
 		try {
@@ -74,8 +76,8 @@ class DTOPanier
 		 on p.pdtNonPeriss = pnp.id";*/
 			$resultat = $connex->query($req);
 			while ($data = $resultat->fetchObject()) {
-				$paniers[] = new Panier($data->id, $data->montant,
-				 $data->libelle);
+				$paniers[] = new Panier($data->id, $data->montant, $data->libelle);
+
 			}
 		} catch (PDOException $e) {
 			echo 'Erreur avec la BD!: ' . $e->getMessage() . '<br/>';
@@ -83,8 +85,59 @@ class DTOPanier
 		}
 		return $paniers;
 	}
+	public function ajouteLigne(Produit $data)
+	{
+		try {
+			$connex = self::getBdd();
+			$req = "INSERT INTO ligne (produit, qte) VALUES (?,?)";
+
+			$prep = $connex->prepare($req);
+      		$prep->bindParam(1, $ajoutLigne);
+			$produit = $data->getRefProd();
+			$qte = $data->getQteStock();
+			$prep->bindParam(1, $produit);
+			$prep->bindParam(2, $qte);
+
+			$prep->execute();
+			//$data->setId($connex->lastInsertId());
+		} catch (PDOException $e) {
+			echo 'Erreur avec la BD!: ' . $e->getMessage() . '<br/>';
+			die();
+		}	
+	}
+	public static function deleteLigne(Panier $data)
+	{
+		try {
+			$connex = self::getBdd();
+			$id = $data->getId();
+			$req = "delete from ligne where id=?";
+			$prep = $connex->prepare($req);
+			$prep->bindParam(1, $id, PDO::PARAM_INT);
+			$prep->execute();
+		} catch (PDOException $e) {
+			echo 'Erreur avec la BD!: ' . $e->getMessage() . '<br/>';
+			die();
+		}
+	}
+
+	public static function updateLigne(Ligne $data)
+	{
+		try {
+			$connex = self::getBdd();
+			$req = "UPDATE ligne set qte = ? WHERE id = ?";
+			$prep = $connex->prepare($req);
+			$id = $data->getId();
+			$qte = $data->getQte();
+			$prep->bindParam(1, $qte);
+			$prep->bindParam(2, $id, PDO::PARAM_INT);
+			$prep->execute();
+		} catch (PDOException $e) {
+			echo 'Erreur avec la BD!: ' . $e->getMessage() . '<br/>';
+			die();
+		}
+	}
 	
-	private static function getBdd()
+    private static function getBdd()
 	{
 		require("localData.php");
 		return new PDO($dns, $user, $mdp);

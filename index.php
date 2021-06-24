@@ -41,12 +41,12 @@
         echo $carte."<br/>";
     }*/
 	require_once("classes/DTOProduit.php");
-	$unProduit = DTOProduit::selectById(4);
-    echo $unProduit->InfosProduit().'<br/>';
-    $lesProduits = DTOProduit::selectAll();
-    foreach($lesProduits as $produit) {
+	/*$unProduit = DTOProduit::selectById(4);
+    echo $unProduit->InfosProduit().'<br/>';*/
+    $produits = DTOProduit::selectAll();
+   /* foreach($lesProduits as $produit) {
         echo $produit->InfosProduit()."<br/>";
-    }
+    }*/
 	/*$unPanier = new Panier('refcli', 120, 1);
 	echo $unPanier->getInfos();*/
 	$x = 10;

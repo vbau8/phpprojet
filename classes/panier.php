@@ -20,6 +20,12 @@ class Panier
         //    return $this->id."<br> libelle : ".$Produit->getLibelle()."<br> refClient :".$this->refClient."<br> montant : ".$this->montant." euro ";
 
 	}
+
+	public function getLignes()
+	{
+    	return DTOPanier::selectById($this->id);
+	}
+
 	public function getRefClient()
 	{
 		return $this->refClient;

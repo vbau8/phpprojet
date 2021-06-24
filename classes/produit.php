@@ -6,7 +6,7 @@
         protected $prixUnit;
         protected $qteStock;
 
-        public function __construct()
+        protected function __construct()
         {
             $nb_args = func_num_args();
             $args = func_get_args();

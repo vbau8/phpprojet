@@ -6,25 +6,32 @@ class DTOProduit
 	{
 		try {
 			$maCo = self::getBdd();
-			$req = "select * from produit p
+			$req = "select p.id, libelle, marque, qteStock, prixUnit, couleur, type, idauteur, NULL poids, NULL parfum, NULL tempConserv, pdtNonPeriss, pdtPeriss
+                    from produit p
                     inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id
-                    inner join pdtperis pnp on p.pdtPeriss = pnp.id
-                    where p.id = ?";
+                    where p.id = ?
+                    union 
+                    select p.id, libelle, marque, qteStock, prixUnit, null, null, null, poids, parfum, tempConserv, pdtNonPeriss, pdtPeriss
+                    from produit p
+                    inner join pdtperis pp on p.pdtPeriss = pp.id
+                    where p.id = ? order by id";
+            
 			$prep = $maCo->prepare($req);
 			$prep->bindParam(1, $id, PDO::PARAM_INT); 
+            $prep->bindParam(2, $id, PDO::PARAM_INT); 
 			$prep->execute(); 
 			$mesData = $prep->fetchObject();
             if (empty($mesData->pdtPeriss)) {
                 if (empty($mesData->auteur)){
-                    $unProduit = new Stylo( $mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->couleur, $mesData->type);
+                    $unProduit = new Stylo($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->couleur, $mesData->type);
                 } else {
-                    $unProduit = new CartePostale($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->type, $mesData->auteur);
+                    $unProduit = new CartePostale($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->type, $mesData->auteur);
                 }
             } else {
                 if (empty($mesData->parfum)){
-                    $unProduit = new Pain($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->poids);
+                    $unProduit = new Pain($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->poids);
                 } else {
-                    $unProduit = new Glace($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->parfum, $mesData->tempConserv);
+                    $unProduit = new Glace($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->parfum, $mesData->tempConserv);
                 }
             }
 		} 
@@ -40,20 +47,26 @@ class DTOProduit
 	{
 		try {
 			$maCo = self::getBdd();
-		  	$req = "select * from produit";
+		  	$req = "select p.id, libelle, marque, qteStock, prixUnit, couleur, type, idauteur, NULL poids, NULL parfum, NULL tempConserv, pdtNonPeriss, pdtPeriss
+                    from produit p
+                    inner join pdtnonperis pnp on p.pdtNonPeriss = pnp.id
+                    union 
+                    select p.id, libelle, marque, qteStock, prixUnit, null, null, null, poids, parfum, tempConserv, pdtNonPeriss, pdtPeriss
+                    from produit p
+                    inner join pdtperis pp on p.pdtPeriss = pp.id order by id";
 			$resultat = $maCo->query($req);            
 			while($mesData = $resultat->fetchObject()) {
                 if (empty($mesData->pdtPeriss)) {
                     if (empty($mesData->auteur)){
-                        $lesProduits[] = new Stylo( $mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->couleur, $mesData->type);
+                        $lesProduits[] = new Stylo( $mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->couleur, $mesData->type);
                     } else {
-                        $lesProduits[] = new CartePostale($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->type, $mesData->auteur);
+                        $lesProduits[] = new CartePostale($mesData->id, $mesData->marque, $mesData->libelle,  $mesData->qteStock, $mesData->prixUnit, $mesData->type, $mesData->auteur);
                     }
                 } else {
                     if (empty($mesData->parfum)){
-                        $lesProduits[] = new Pain($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->poids);
+                        $lesProduits[] = new Pain($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->poids);
                     } else {
-                        $lesProduits[] = new Glace($mesData->id, $mesData->libelle, $mesData->marque,  $mesData->qteStock, $mesData->prixUnit, $mesData->parfum, $mesData->tempConserv);
+                        $lesProduits[] = new Glace($mesData->id, $mesData->marque, $mesData->libelle, $mesData->qteStock, $mesData->prixUnit, $mesData->parfum, $mesData->tempConserv);
                     }
                 }
 			}

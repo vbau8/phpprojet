@@ -1,23 +1,8 @@
 <?php
-require_once('classes/pain.php');
-require_once('classes/glace.php');
-require_once('classes/auteur.php');
-require_once('classes/stylo.php');
-require_once('classes/cartepostale.php');
-require_once('classes/panier.php');
-require_once('classes/produit.php');
-require_once('classes/DTOProduit.php');
-$unProduit = DTOProduit::selectById(4);
-echo $unProduit->InfosProduit().'<br/>';
-$lesProduits = DTOProduit::selectAll();
-foreach($lesProduits as $produit) {
-	echo $produit->InfosProduit().'<br/>';
-}
-	/*require_once('classes/DTOProduit.php');
+	require_once('classes/require.php');
 	$produits = DTOProduit::selectAll();
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-
 	<body>
 		<section class="jumbotron text-center">
 			<div class="container">
@@ -37,7 +22,7 @@ foreach($lesProduits as $produit) {
 								<?php if (!isset($p->marque)) {?><p class="card-subtitle">Sans marque</p><?php }?>
 								<div class="card-footer row">
 									<a href="#" class="card-link btn btn-primary">Ajouter au panier</a>
-									<a href="<?php echo 'produit.php/refProd='.$p->refProd;?>" class="card-link btn btn-primary">Voir</a>
+									<a href="<?php echo 'refprod.php?id='.$p->refProd;?>" class="card-link btn btn-primary">Voir</a>
 								</div>
 							</div>
 						</div>
@@ -47,4 +32,4 @@ foreach($lesProduits as $produit) {
 			</div>
 		</div>
 	</body>
-</html>*/?>
+</html>

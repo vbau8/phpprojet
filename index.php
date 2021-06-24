@@ -45,10 +45,10 @@
     $lesCartes = DTOCartePostale::selectAll();
     foreach($lesCartes as $carte) {
         echo $carte."<br/>";
-    }*/	
+    }*/
 	require_once("classes/DTOProduit.php");
-	//$unProduit = DTOProduit::selectById(4);
-    //echo $unProduit->InfosProduit().'<br/>';
+	$unProduit = DTOProduit::selectById(4);
+    echo $unProduit->InfosProduit().'<br/>';
     $lesProduits = DTOProduit::selectAll();
     foreach($lesProduits as $produit) {
         echo $produit->InfosProduit()."<br/>";

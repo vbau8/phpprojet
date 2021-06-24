@@ -4,6 +4,8 @@
 	require_once("classes/auteur.php");
 	require_once('classes/stylo.php');
 	require_once("classes/cartepostale.php");
+	require_once("classes/panier.php");
+	require_once("classes/produit.php");
 	/*$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
 	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
 	echo $p;
@@ -43,7 +45,16 @@
     $lesCartes = DTOCartePostale::selectAll();
     foreach($lesCartes as $carte) {
         echo $carte."<br/>";
-    }*/
+    }*/	
+	require_once("classes/DTOProduit.php");
+	$unProduit = DTOProduit::selectById(4);
+    echo $unProduit->InfosProduit().'<br/>';
+    /*$lesProduits = DTOProduit::selectAll();
+    foreach($lesProduits as $produit) {
+        echo $produit."<br/>";
+    }
+	$unPanier = new Panier('refcli', 120, 1);
+	echo $unPanier->getInfos();*/
 	$x = 10;
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">

@@ -1,11 +1,5 @@
 <?php
-	require_once('classes/pain.php');
-	require_once('classes/glace.php');
-	require_once("classes/auteur.php");
-	require_once('classes/stylo.php');
-	require_once("classes/cartepostale.php");
-	require_once("classes/panier.php");
-	require_once("classes/produit.php");
+	require_once('classes/require.php');
 	/*$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
 	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
 	echo $p;

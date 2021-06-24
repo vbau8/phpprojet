@@ -1,0 +1,9 @@
+<?php
+require_once('classes/pain.php');
+require_once('classes/glace.php');
+require_once("classes/auteur.php");
+require_once('classes/stylo.php');
+require_once("classes/cartepostale.php");
+require_once("classes/panier.php");
+require_once("classes/produit.php");
+?>

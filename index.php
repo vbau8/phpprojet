@@ -1,9 +1,6 @@
 <?php
-	require_once('classes/pain.php');
-	require_once('classes/glace.php');
-	$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
-	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
-	$produits = [$p, $g];
+	require_once('classes/DTOProduit.php');
+	$produits = DTOProduit::selectAll();
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -19,13 +16,12 @@
 				<div class="row">
 				<?php foreach ($produits as $p) {?>
 					<div class="col-md-4">
-						<div class="card" style="width: 18rem">
+						<div class="card" style="min-width: 18rem; min-height: 13rem">
 							<div class="card-body">
-								<h5 class="card-title"><?php echo $p->marque?></h5>
-								<p class="card-text"><?php echo $p->libelle?></p>
+								<h5 class="card-title"><?php echo $p->__toStringProd()?></h5>
 								<div class="row">
 									<a href="#" class="btn btn-primary">Ajouter au panier</a>
-									<a href="<?php echo 'produit.php/id='.$p->id;?>" class="btn btn-primary">Voir</a>
+									<a href="<?php echo 'produit.php/refProd='.$p->refProd;?>" class="btn btn-primary">Voir</a>
 								</div>
 							</div>
 						</div>

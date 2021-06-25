@@ -12,6 +12,9 @@
 				<p class="lead text-muted">Ma belle boutique propose à la vente différents articles (des cartes postales, des stylos mais aussi des produits régionaux : des pains et des glaces).</p>
 			</div>
 		</section>
+		<div class="text-center">
+			<a href="frmPanier.php" class="btn btn-primary">Aller au panier</a>
+		</div>
 		<div class="album py-5">
 			<div class="container">
 				<div class="row">

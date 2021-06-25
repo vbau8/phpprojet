@@ -1,11 +1,9 @@
 <?php
     session_start();
     require_once('classes/require.php');
+    require_once('classes/panierSession.php');
    if(isset($_GET['id'])) {
         $p = DTOProduit::selectById($_GET['id']);
-    }
-    if (isset($_POST['id'])) {
-        array_push($_SESSION['panier'] ,$_POST['id']);
     }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">

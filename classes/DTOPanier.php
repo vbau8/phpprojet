@@ -156,7 +156,7 @@ class DTOPanier
 		}
 	  return $paniers;
 	}
-	
+
     private static function getBdd()
 	{
 		require("localData.php");

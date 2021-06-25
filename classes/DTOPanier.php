@@ -174,7 +174,31 @@ class DTOPanier
 			die();
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+	public static function selectById($id)
+	{
+		try {
+			$maCo = self::getBdd();
+			$req = "select * from panier p inner join ligne l on p.id = l.idpanier where p.id=?";
+			$prep = $maCo->prepare($req);
+			$prep->bindParam(1, $id, PDO::PARAM_INT); 
+			$prep->execute(); 
+			//$resultat = $maCo->query($req);
+			while ($data = $prep->fetchObject()) {
+				$paniers[] = new Panier($data->id, $data->montant, $data->libelle);
+			}
+		} 
+		catch (PDOException $e) 
+		{
+			echo 'Erreur avec la BD!: '.$e->getMessage().'<br/>';
+			die();
+		}
+	  return $paniers;
+	}
+
+>>>>>>> view
     private static function getBdd()
 	{
 		require("localData.php");

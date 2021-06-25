@@ -1,7 +1,7 @@
 <?php
     abstract class Produit {
         protected $refProd;
-        protected $libelle;
+        public $libelle;
         protected $marque;
         protected $prixUnit;
         protected $qteStock;
@@ -64,10 +64,6 @@
         }
         public function setQteStock($qteStock) {
             $this->qteStock = $qteStock;
-        }
-        public function __toStringProd()
-        {
-            return 'Nom: '.$this->libelle.'<br/>Marque: '.$this->marque.'<br/>Prix: '.$this->prixUnit.'<br/>Quantité en Stock: '.$this->qteStock;
         }
     }
 ?>

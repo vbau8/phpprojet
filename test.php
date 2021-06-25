@@ -1,5 +1,5 @@
 <?php
-	require_once('classes/require.php');
+	require_once("classes/require.php");
 	/*$g = new Glace('Hagen Daas', 'Cookie Dough', 80, 5, '10/01/2001', 'Cookie', 0);
 	$p = new Pain(50, 'Boule Ange Riz', 'Pain au cereales', 50, 4, 1);
 	echo $p;
@@ -25,33 +25,42 @@
     $lesAuteurs = DTOAuteur::selectAll();
     foreach($lesAuteurs as $auteur) {
         echo $auteur."<br/>";
-    }
+    }/*
 	require_once("classes/DTOStylo.php");
 	$unStylo = DTOStylo::selectById(3);
     echo $unStylo.'<br/>';
     $lesStylos = DTOStylo::selectAll();
     foreach($lesStylos as $stylo) {
         echo $stylo."<br/>";
-    }
-	require_once("classes/DTOCartePostale.php");
+    }*/
+	/*require_once("classes/DTOCartePostale.php");
 	$uneCarte = DTOCartePostale::selectById(4);
     echo $uneCarte.'<br/>';
     $lesCartes = DTOCartePostale::selectAll();
     foreach($lesCartes as $carte) {
         echo $carte."<br/>";
-    }*/
+    }*//*
 	require_once("classes/DTOProduit.php");
-	$unProduit = DTOProduit::selectById(4);
-    echo $unProduit->InfosProduit().'<br/>';
+	//$unProduit = DTOProduit::selectById(4);
+    //echo $unProduit->InfosProduit().'<br/>';
     $lesProduits = DTOProduit::selectAll();
     foreach($lesProduits as $produit) {
         echo $produit->InfosProduit()."<br/>";
-    }
-	/*$unPanier = new Panier('refcli', 120, 1);
-	echo $unPanier->getInfos();*/
-	$x = 10;
+    }*/
+	require_once("classes/DTOPanier.php");
+	$unMontant=DTOPanier::calculeMontant(1);
+	var_dump($unMontant);
+	
+	require_once("classes/ligne.php");
+	$ligne= new Ligne(1,1,2,5);
+	echo $ligne;
+	 
+	/*
+	$unPanier = new Panier('Hugo', 120, 1);
+	echo $unPanier->getInfos();
+	$x = 10;*/
 ?>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
 	<body>
 		<section class="jumbotron text-center">
@@ -63,14 +72,15 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row">
-				<?php foreach ($produits as $p) {?>
+				<?php foreach ($lesProduits as $p) {?>
 					<div class="col-md-4">
-						<div class="card" style="min-width: 18rem; min-height: 13rem">
+						<div class="card" style="width: 18rem;">
 							<div class="card-body">
-								<h5 class="card-title"><?php echo $p->__toStringProd()?></h5>
+								<h5 class="card-title"><?php $p->marque?></h5>
+								<p class="card-text"><?php $p->libelle?></p>
 								<div class="row">
 									<a href="#" class="btn btn-primary">Ajouter au panier</a>
-									<a href="<?php echo 'produit.php/refProd='.$p->refProd;?>" class="btn btn-primary">Voir</a>
+									<a href="<?php echo 'produit.php/id='.$p->id;?>" class="btn btn-primary">Voir</a>
 								</div>
 							</div>
 						</div>

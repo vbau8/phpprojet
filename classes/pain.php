@@ -27,7 +27,7 @@
         }
         public function __toString()
         {
-            return $this->__toStringProd().'<br/>Poids du pain: '.$this->poids;
+            return $this->marque.'<br/>'.$this->libelle.'<br/>'.$this->poids;
         }
     }
 ?>

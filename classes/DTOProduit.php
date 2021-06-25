@@ -78,6 +78,7 @@ class DTOProduit
 		}
 	    return $lesProduits;
 	}
+
     private static function getBdd() 
 	{
 		require("localData.php");

@@ -36,7 +36,7 @@
         }
         public function __toString()
         {
-            return $this->__toStringProd().'<br/>Gout: '.$this->parfum.'<br/>Temperature de conservation: '.$this->tempConserv.'°C';
+            return $this->InfosProduit().'<br/>Gout: '.$this->parfum.'<br/>Temperature de conservation: '.$this->tempConserv.'°C';
         }
     }
 ?>

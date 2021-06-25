@@ -36,7 +36,11 @@
         }
         public function __toString()
         {
+<<<<<<< HEAD
             return '<br/>Nom:'.$this->libelle.' gout:'.$this->parfum.' temp:'.$this->tempConserv.'°C';
+=======
+            return $this->InfosProduit().'<br/>Gout: '.$this->parfum.'<br/>Temperature de conservation: '.$this->tempConserv.'°C';
+>>>>>>> 72ed590760cae2b9440d07599afd7601d5da568f
         }
     }
 ?>

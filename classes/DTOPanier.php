@@ -40,6 +40,31 @@ class DTOPanier
 			die();
 		}
 	}
+	public static function calculeMontant($id)
+	{
+		try {
+			$connex=self::getBdd();
+			$req = " SELECT ligne.id,produit.id,qte,prixUnit
+			from ligne
+			inner join produit on ligne.idProduit = produit.id
+			where idPanier = ? ";
+			 $prep = $connex->prepare($req);
+			 $prep->bindParam(1, $id, PDO::PARAM_INT);
+			 $prep->execute();
+			 $montant= 0;
+			 while ($data = $prep->fetchObject()) {
+				 $montant = $montant+ $data->qte* $data->prixUnit;
+				 }
+			}
+			catch (PDOException $e)
+			{
+				echo 'Erreur avec la BD!: '.$e->getMessage().'<br/>';
+				die();
+			}
+		  return $montant;
+		
+		
+	}
 
 	public static function update(Panier $data)
 	{
@@ -47,11 +72,8 @@ class DTOPanier
 			$connex = self::getBdd();
 			$req = "UPDATE panier set montant = ? WHERE id = ?";
 			$prep = $connex->prepare($req);
-			$prep = $connex->prepare($req);
 			$id = $data->getId();
-			//	$refClient=$data->getRefClient();
 			$montant = $data->getMontant();
-			//	$prep->bindParam(1,$refClient);
 			$prep->bindParam(1, $montant);
 			$prep->bindParam(2, $id, PDO::PARAM_INT);
 			$prep->execute();
@@ -65,15 +87,12 @@ class DTOPanier
 		try {
 
 			$connex = self::getBdd();
-			//$req = "select * from panier";
 			$req = "SELECT panier.id, produit.id, panier.montant, produit.libelle
-		FROM produit
-		INNER JOIN ligne ON produit.id = ligne.id
-		INNER JOIN panier ON ligne.idPanier=panier.id
-		ORDER BY panier.id";
-			/*$req = "SELECT * 
-		FROM produit p inner join pdtnonperis pnp
-		 on p.pdtNonPeriss = pnp.id";*/
+		            FROM produit
+		            INNER JOIN ligne ON produit.id = ligne.id
+		            INNER JOIN panier ON ligne.idPanier=panier.id
+		            ORDER BY panier.id";
+
 			$resultat = $connex->query($req);
 			while ($data = $resultat->fetchObject()) {
 				$paniers[] = new Panier($data->id, $data->montant, $data->libelle);
@@ -85,6 +104,25 @@ class DTOPanier
 		}
 		return $paniers;
 	}
+	public static function selectById($id)
+    {
+        try {
+            $maCo = self::getBdd();
+            $req = "select * from panier p inner join ligne l on p.id = l.idpanier where p.id=?";
+            $prep = $maCo->prepare($req);
+            $prep->bindParam(1, $id, PDO::PARAM_INT);
+            $prep->execute();
+            while ($data = $prep->fetchObject()) {
+                $paniers[] = new Panier($data->id, $data->montant, $data->libelle);
+            }
+        }
+        catch (PDOException $e)
+        {
+            echo 'Erreur avec la BD!: '.$e->getMessage().'<br/>';
+            die();
+        }
+      return $paniers;
+    }
 	public function ajouteLigne(Produit $data)
 	{
 		try {

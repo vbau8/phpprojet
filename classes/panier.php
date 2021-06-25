@@ -4,9 +4,11 @@ class Panier
 	private $refClient;
 	private $montant;
 	private $id;
+	private $lignes;
+	
 
 
-	function __construct($refClient,$montant,$id='')
+	function __construct($refClient,$montant,$lignes,$id='')
 	{
 	$this->setRefClient($refClient);
 	$this->setMontant($montant);
@@ -14,12 +16,18 @@ class Panier
 	}
 	public function getInfos()
 	{
-		//return "Panier <br> id : ".$this->id."<br> libelle : ".(new Produit)->getLibelle()."<br> refClient : ".$this->refClient."<br> montant : ".$this->montant." euro ";
-			return "Panier <br> id : ".$this->id."<br> libelle : ".$this->id."<br> refClient :".$this->refClient."<br> montant : ".$this->montant." euro ";
-            $produit = DTOProduit::selectById($this->id);
-        //    return $this->id."<br> libelle : ".$Produit->getLibelle()."<br> refClient :".$this->refClient."<br> montant : ".$this->montant." euro ";
+		require_once("require.php");
+		$ligne= DTOProduit::selectById(2);
+        echo $ligne->libelle;
 
 	}
+     
+	
+	public function __toString():string
+	{
+		return $this->lignes;
+	}
+	
 	public function getRefClient()
 	{
 		return $this->refClient;
@@ -44,9 +52,23 @@ class Panier
 	{
 		return $this->id;
 	}
-	
-	
-	
+	/**
+	 * Get the value of lignes
+	 */
+	public function getLignes()
+	{
+		return $this->lignes;
+	}
+
+	/**
+	 * Set the value of lignes
+	 */
+	public function setLignes($lignes): self
+	{
+		$this->lignes = $lignes;
+
+		return $this;
+	}
 }
 
  ?>

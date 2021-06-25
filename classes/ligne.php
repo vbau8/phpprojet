@@ -4,19 +4,26 @@ class Ligne
 {
 	private $id;
 	private $idPanier;
-	private $idProduit;
+	private $produit;
     private $qte;
+	private $prix;
 
-	function __construct($idPanier,$idProduit,$qte,$id='')
+	function __construct($idPanier,$produit,$qte,$prix,$id='')
 	{
-	$this->setIdPanier($idPanier);
-	$this->setIdProduit($idProduit);
-    $this->setQte($qte);
-	$this->setId($id);
+		$this->setIdPanier($idPanier);
+		$this->setProduit($produit);
+		$this->setQte($qte);
+		$this->setPrix($prix);
+		$this->setId($id);
 	}
 	public function getInfos()
 	{
-		return "Ligne[id=".$this->id.",idPanier=".$this->idPanier.",idProduit=".$this->idProduit.",qte=".$this->qte."]";
+		return "Ligne[id=".$this->id.",idPanier=".$this->idPanier.",idProduit=".$this->produit.",qte=".$this->qte."]";
+	}
+
+	public function __toString()
+	{
+		return $this->qte." ".$this->idPanier." ".$this->produit." ".$this->prix;
 	}
 	public function getIdPanier()
 	{
@@ -26,13 +33,13 @@ class Ligne
 	{
 		$this->idPanier = $idPanier;
 	}   
-	public function getIdProduit()
+	public function getProduit()
 	{
-		return $this->idProduit;
+		return $this->produit;
 	}
-	public function setIdProduit($idProduit)
+	public function setProduit($produit)
 	{
-		$this->idProduit = $idProduit;
+		$this->produit = $produit;
 	}
     public function getQte()
 	{
@@ -41,6 +48,14 @@ class Ligne
 	public function setQte($qte)
 	{
 		$this->qte = $qte;
+	}
+	public function getPrix()
+	{
+		return $this->prix;
+	}
+	public function setPrix($prix)
+	{
+		$this->prix = $prix;
 	}
 	public function setId($id)
 	{

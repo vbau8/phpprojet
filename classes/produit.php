@@ -1,12 +1,12 @@
 <?php
-    abstract class Produit {
-        protected $refProd;
+    class Produit {
+        public $refProd;
         public $libelle;
-        protected $marque;
-        protected $prixUnit;
-        protected $qteStock;
+        public $marque;
+        public $prixUnit;
+        public $qteStock;
 
-        public function __construct()
+        function __construct()
         {
             $nb_args = func_num_args();
             $args = func_get_args();
@@ -26,15 +26,9 @@
                     break;
                 default:
                     break;
+
             }
         }
-        public function InfosProduit()
-        {
-            $argRefProd = (empty($this->refProd)) ?  '' : $this->refProd.' ';
-            return $argRefProd.$this->libelle.' '.$this->marque.' '.$this->prixUnit.' '.$this->qteStock;
-        }
-
-    # Accesseurs
         public function getRefProd() {
             return $this->refProd;
         }
@@ -64,6 +58,11 @@
         }
         public function setQteStock($qteStock) {
             $this->qteStock = $qteStock;
+        }
+        public function InfosProduit()
+        {
+            $argRefProd = (empty($this->refProd)) ?  '' : $this->refProd.' ';
+            return $argRefProd.$this->libelle.' '.$this->marque.' '.$this->prixUnit.' '.$this->qteStock;
         }
     }
 ?>

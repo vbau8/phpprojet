@@ -1,5 +1,6 @@
-<?php require './base/header.php'; 
+<?php 
     session_start();
+    require('./base/header.php'); 
 	require_once('classes/require.php');
 	require_once('classes/DTOPanier.php');
     require_once('classes/DTOProduit.php');

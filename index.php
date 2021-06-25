@@ -1,6 +1,10 @@
 <?php
+	session_start();
 	require_once('classes/require.php');
 	$produits = DTOProduit::selectAll();
+	if (isset($_POST['id'])) {
+        array_push($_SESSION['panier'] ,$_POST['id']);
+    }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 	<body>
@@ -15,13 +19,15 @@
 				<div class="row">
 				<?php foreach ($produits as $p) {?>
 					<div class="col-md-3 mt[1, 3]">
-						<div class="card text-center" style="width: 18rem; height: 9rem">
+						<div class="card text-center" style="width: 18rem; height: 12rem">
 							<div class="card-body">
 								<h5 class="card-title"><?php echo ucwords($p->libelle)?></h5>
 								<?php if (isset($p->marque)) {?><p class="card-subtitle"><?php echo $p->marque?></p><?php }?>
 								<?php if (!isset($p->marque)) {?><p class="card-subtitle">Sans marque</p><?php }?>
-								<div class="card-footer row">
-									<a href="#" class="card-link btn btn-primary">Ajouter au panier</a>
+								<div class="card-footer">
+									<form method="POST">
+									<button action="#" type="submit" class="card-link btn btn-primary" name="id" value="<?php echo $p->refProd?>">Ajouter au panier</button><br/>
+									</form>
 									<a href="<?php echo 'refprod.php?id='.$p->refProd;?>" class="card-link btn btn-primary">Voir</a>
 								</div>
 							</div>

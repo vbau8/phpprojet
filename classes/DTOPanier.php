@@ -142,7 +142,6 @@ class DTOPanier
 			$prep = $maCo->prepare($req);
 			$prep->bindParam(1, $id, PDO::PARAM_INT); 
 			$prep->execute(); 
-			//$resultat = $maCo->query($req);
 			while ($data = $prep->fetchObject()) {
 				$paniers[] = new Panier($data->id, $data->montant, $data->libelle);
 			}

@@ -26,17 +26,16 @@
           //$produits = $Panier->getLignes();
           foreach ($produits as $p) {?>
           <div class="card p-3 mb-3">
-            <p class=""><strong><?=$p->getLibelle()?></strong></p>
-            <p class=""><small>Marque : <?=$p->getMarque()?></small></p>
-            <p class=""><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" min="0" max=<?=$p->getQteStock()?> />  Disponible en stock : <?=$p->getQteStock()?></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
-            <p class="" ><small><span class="col align-self-end"><a>Supprimer</a></span></small></p>
+            <h5 class="card-title"><strong><?=$p->getLibelle()?></strong></h5>
+            <p class="card-text"><small>Marque : <?=$p->getMarque()?></small></p>
+            <p class="card-text"><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" min="0" max=<?=$p->getQteStock()?> /> <small class="text-muted">Disponible en stock : <?=$p->getQteStock()?></small></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
+            <p class="text-end" ><small class="text-muted"><a href="#" class="btn btn-primary">Détail</a><span class="col align-self-end"><a href="#">Supprimer</a></span></small></p>
           </div>
           <?php }?>
         </div>
 
         <div class="col-md-4">
           <h2>Récapitulatif</h2>
-          <!-- checkout -->
           <div class="bg-white border p-3 sticky-top">
             <a href="#" class="btn btn-primary w-100">Valider</a>   
 
@@ -45,7 +44,6 @@
               <p><strong><?=$panier->getMontant()?> €</strong></p>
             </div>
           </div>
-          <!-- /checkout -->
         </div>
       </div>
     <div>

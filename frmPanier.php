@@ -6,6 +6,7 @@
   {
       echo '<p style="color:red;">Panier en erreur</p>'; 
   }
+  $_SESSION["panier"] = 1;
   $panier = DTOPanier::selectById($_SESSION["panier"]);
 ?>
 
@@ -27,9 +28,8 @@
           <div class="card p-3 mb-3">
             <p class=""><strong><?=$p->getLibelle()?></strong></p>
             <p class=""><small>Marque : <?=$p->getMarque()?></small></p>
-            
-            <p class=""><small>Quantité en stock : <?=$p->getQteStock()?></small><span class=""> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
-            <p class=""><small><span class=""><a>Supprimer</a></span></small></p>
+            <p class=""><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" min="0" max=<?=$p->getQteStock()?> />  Disponible en stock : <?=$p->getQteStock()?></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
+            <p class="" ><small><span class="col align-self-end"><a>Supprimer</a></span></small></p>
           </div>
           <?php }?>
         </div>

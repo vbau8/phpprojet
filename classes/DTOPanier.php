@@ -146,9 +146,6 @@ class DTOPanier
 			while ($data = $prep->fetchObject()) {
 				$paniers[] = new Panier($data->id, $data->montant, $data->libelle);
 			}
-		//	$mesData = $prep->fetchObject();
-
-//			$unPanier = new Panier($mesData->id, $mesData->montant, $mesData->refClient, $mesData->idProduit);
 		} 
 		catch (PDOException $e) 
 		{

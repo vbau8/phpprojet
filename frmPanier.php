@@ -3,7 +3,6 @@
     require('./base/header.php'); 
 	require_once('classes/require.php');
 	require_once('classes/DTOPanier.php');
-    require_once('classes/DTOProduit.php');
   
   if (!isset($_SESSION['panier'])) // Vérifie si erreur
   {

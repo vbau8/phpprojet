@@ -3,7 +3,6 @@
 	require_once('classes/require.php');
 	require_once('classes/panierSession.php');
 	$produits = DTOProduit::selectAll();
-	print_r($_SESSION['panier']);
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 	<body>

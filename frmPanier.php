@@ -1,6 +1,6 @@
 <?php 
-    session_start();
-    require('./base/header.php'); 
+  session_start();
+  require('./base/header.php'); 
 	require_once('classes/require.php');
 	require_once('classes/DTOPanier.php');
   
@@ -8,6 +8,14 @@
   {
     echo '<p style="color:red;">Panier en erreur</p>'; 
   }
+  if (isset($_POST['del'])) {
+    for($x = 0; $_SESSION['panier'][$x]; $x++) {
+        if ($_POST['del'] == $_SESSION['panier'][$x]) {
+            unset($_SESSION['panier'][$x]);
+            $_SESSION['panier'] = array_values($_SESSION['panier']);
+        }
+    }
+}
 ?>
 
     <div class="section">
@@ -30,7 +38,7 @@
             <h5 class="card-title"><strong><?=$p->getLibelle()?></strong></h5>
             <p class="card-text"><small>Marque : <?=$p->getMarque()?></small></p>
             <p class="card-text"><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" min="0" max=<?=$p->getQteStock()?> /> <small class="text-muted">Disponible en stock : <?=$p->getQteStock()?></small></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
-            <p class="text-end" ><small class="text-muted"><a href="#" class="btn btn-primary">Détail</a><span class="col align-self-end"><a href="#">Supprimer</a></span></small></p>
+            <p class="text-end" ><small class="text-muted"><a href="<?php echo 'refprod.php?id='.$p->refProd;?>" class="btn btn-primary">Détail</a><span class="col align-self-end"><form method="POST"><button action="#" type="submit" class="btn btn-link" name="del" value="<?php echo $p->refProd?>">Supprimer</button></form></span></small></p>
           </div>
           <?php }?>
         </div>

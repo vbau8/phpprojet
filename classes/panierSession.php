@@ -2,7 +2,8 @@
     session_start();
     if (!$_SESSION['panier']) $_SESSION['panier'] = array();
     if (!$_SESSION['qte']) $_SESSION['qte'] = array();
-    if (isset($_POST['id']) && isset($_POST['qte'])) {
+    if (isset($_POST['id'])) {
+        if(!$_POST['qte']) $_POST['qte'] = 1;
         for($x = 0; $_SESSION['panier'][$x]; $x++) {
             if ($_POST['id'] == $_SESSION['panier'][$x]) {
                 $_SESSION['qte'][$x] += $_POST['qte'];

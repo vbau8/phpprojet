@@ -19,7 +19,9 @@
     }
 }
 ?>
-
+		<div class="text-center">
+			<a href="index.php" class="btn btn-primary">Page principale</a>
+		</div>
     <div class="section">
     </div>
     <div class="container py-3">

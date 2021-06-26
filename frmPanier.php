@@ -13,6 +13,8 @@
         if ($_POST['del'] == $_SESSION['panier'][$x]) {
             unset($_SESSION['panier'][$x]);
             $_SESSION['panier'] = array_values($_SESSION['panier']);
+            unset($_SESSION['qte'][$x]);
+            $_SESSION['qte'] = array_values($_SESSION['qte']);
         }
     }
 }
@@ -32,15 +34,17 @@
           require_once("classes/DTOProduit.php");   
           $produits = DTOProduit::selectAll();
           //$produits = $Panier->getLignes();
+          $x = 0;
           foreach ($_SESSION['panier'] as $p) {
               $p = DTOProduit::selectById($p);?>
           <div class="card p-3 mb-3">
             <h5 class="card-title"><strong><?=$p->getLibelle()?></strong></h5>
             <p class="card-text"><small>Marque : <?=$p->getMarque()?></small></p>
-            <p class="card-text"><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" min="0" max=<?=$p->getQteStock()?> /> <small class="text-muted">Disponible en stock : <?=$p->getQteStock()?></small></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
+            <p class="card-text"><small><span class="input-group-text"> Quantité <input type="number" id="qtePanier" size="5" value=<?=$_SESSION['qte'][$x]?> min="0" max=<?=$p->getQteStock()?> /> <small class="text-muted">Disponible en stock : <?=$p->getQteStock()?></small></small></span><span class="input-group-text" id="inputGroup-sizing-sm"> Prix unitaire : <?=$p->getPrixUnit()?> €</span></p>
             <p class="text-end" ><small class="text-muted"><a href="<?php echo 'refprod.php?id='.$p->refProd;?>" class="btn btn-primary">Détail</a><span class="col align-self-end"><form method="POST"><button action="#" type="submit" class="btn btn-link" name="del" value="<?php echo $p->refProd?>">Supprimer</button></form></span></small></p>
           </div>
-          <?php }?>
+          <?php $x++;}
+        $x=0?>
         </div>
 
         <div class="col-md-4">

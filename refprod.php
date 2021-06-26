@@ -19,8 +19,9 @@
             <h6><?php if (isset($p->marque)) echo ucwords($p->marque.'<br/>'.$p->prixUnit.'€<br/>');
             else echo ucwords('Marque distributeur<br/>'.$p->prixUnit.'€<br/>')?></h6>
                 <form method="POST">
+					<input type="number" class="form-control" name="qte" min="1" value="1"><br/>
 			        <button action="#" type="submit" class="card-link btn btn-primary" name="id" value="<?php echo $p->refProd?>">Ajouter au panier</button><br/>
-                </form>
+				</form>
 			    <a href="<?php echo 'index.php';?>" class="card-link btn btn-primary">Retourner a l'accueil</a>
 		</div>
 	</body>
